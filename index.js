@@ -1,70 +1,63 @@
-// Dependencies needed for this application
-
+// Required dependencies
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
 
-// Create writeToFile function to write README file
-
-function writeToFile(filename, data) {
-    fs.writeFile(filename, data, (err) => {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log(`File '${filename}' created successfully!`);
-        }
+// Prompt user for information about the project
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'What is the title of your project?',
+        },
+        {
+            type: 'input',
+            name: 'description',
+            message: 'Please provide a description of your project:',
+        },
+        {
+            type: 'input',
+            name: 'installation',
+            message: 'Please provide installation instructions:',
+        },
+        {
+            type: 'input',
+            name: 'usage',
+            message: 'Please provide usage information:',
+        },
+        {
+            type: 'input',
+            name: 'contribution',
+            message: 'Please provide contribution guidelines:',
+        },
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'Please provide test instructions:',
+        },
+        {
+            type: 'list',
+            name: 'license',
+            message: 'What license do you want to use?',
+            choices: ['MIT', 'GPLv2', 'Apache'],
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your GitHub username?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email address?',
+        },
+    ])
+    .then((data) => {
+        const markdown = generateMarkdown(data);
+        
+        // Create README file with markdown content
+        fs.writeFile('README.md', markdown, (err) =>
+            err ? console.log(err) : console.log('README.md file has been created!')
+        );
     });
-}
-
-// Create function to initialize app followed by array of questions for user input
-
-function init() {
-
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'title',
-                message: "What is your project's title?",
-            },
-            {
-                type: 'input',
-                name: 'description',
-                message: 'Please provide a brief description of your project:',
-            },
-            {
-                type: 'input',
-                name: 'installation',
-                message: 'Please provide installation instructions:',
-            },
-            {
-                type: 'input',
-                name: 'usage',
-                message: 'Please provide usage instructions:',
-            },
-            {
-                type: 'input',
-                name: 'contributing',
-                message: 'Please provide contribution guidelines:',
-            },
-            {
-                type: 'input',
-                name: 'tests',
-                message: 'Please provide testing instructions:',
-            },
-            {
-                type: 'list',
-                name: 'license',
-                message: 'Please choose a license for your project:',
-                choices: ['MIT', 'Apache', 'GPL'],
-            },
-        ])
-
-        .then((answers) => {
-            const markdown = generateMarkdown(answers);
-            writeToFile('README.md', markdown);
-        });
-}
-
-// Function call to initialize app
-init();
