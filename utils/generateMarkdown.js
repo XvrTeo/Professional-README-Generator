@@ -1,14 +1,44 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) { }
+function renderLicenseBadge(license) {
+  if (license) {
+    const licenseText = license.toLowerCase();
+    const badge = `![License](https://img.shields.io/badge/license-${licenseText}-brightgreen.svg)`;
+    return badge;
+  } else {
+    return '';
+  }
+}
 
-// TODO: Create a function that returns the license link
+// Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) { }
+function renderLicenseLink(license) {
+  if (license) {
+    const licenseText = license.toLowerCase();
+    const link = `https://opensource.org/licenses/${licenseText}`;
+    return link;
+  } else {
+    return '';
+  }
+}
 
-// TODO: Create a function that returns the license section of README
+// Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) { }
+function renderLicenseSection(license) {
+  if (license) {
+    const licenseText = license.toUpperCase();
+    const licenseLink = renderLicenseLink(license);
+    return `## License
+
+    This project is licensed under the [${licenseText}](${licenseLink}) license.
+
+${renderLicenseBadge(license)}
+
+`;
+  } else {
+    return '';
+  }
+}
 
 // Create a function to generate markdown for README
 function generateMarkdown(data) {
@@ -22,7 +52,7 @@ ${data.description}
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Tests](#tests)
-- [License](#license)
+${renderLicenseLink(data.license) ? '- [License](#license)' : ''}
 
 ## Installation
 
@@ -40,10 +70,7 @@ ${data.contributing}
 
 ${data.tests}
 
-## License
-
-This project is licensed under the ${data.license} license.
-
+${renderLicenseSection(data.license)}
 `;
 }
 
