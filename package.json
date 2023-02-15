@@ -1,20 +1,14 @@
 {
-  "name": "professional-readme-generator",
+  "name": "static-site",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/XvrTeo/Professional-README-Generator.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/XvrTeo/Professional-README-Generator/issues"
-  },
-  "homepage": "https://github.com/XvrTeo/Professional-README-Generator#readme"
+  "dependencies": {
+    "inquirer": "^8.2.5"
+  }
 }
