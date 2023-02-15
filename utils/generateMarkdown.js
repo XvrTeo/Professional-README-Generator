@@ -42,18 +42,33 @@ If you have any questions, please contact me at ${data.email}. You can find more
 `;
 }
 
+// Function that returns a license badge based on which license is passed in
+// If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if (license !== "None") {
-    return `![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)`;
+  if (!license) {
+    return '';
   }
-  return "";
+  return `![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)`;
 }
 
-function renderLicenseSection(license) {
-  if (license !== "None") {
-    return `This project is licensed under the ${license} license.`;
+// Function that returns the license link
+// If there is no license, return an empty string
+function renderLicenseLink(license) {
+  if (!license) {
+    return '';
   }
-  return "This project is not licensed.";
+  return `\n* [License](#license)\n`;
+}
+
+// Function that returns the license section of README
+// If there is no license, return an empty string
+function renderLicenseSection(license) {
+  if (!license) {
+    return '';
+  }
+  return `## License
+
+This project is licensed under the ${license} license.`;
 }
 
 module.exports = generateMarkdown;
