@@ -21,5 +21,5 @@ The user will answer a series of questions in the command line to generate READM
 
 ### Links:
 
-Walkthrough video: https://gifyu.com/image/Sq0Nd
-https://github.com/XvrTeo/Professional-README-Generator
+1. Walkthrough video: https://gifyu.com/image/Sq0Nd
+2. https://github.com/XvrTeo/Professional-README-Generator
